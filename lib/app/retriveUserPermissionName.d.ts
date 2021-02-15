@@ -1,3 +1,4 @@
+import * as sfcore from '@salesforce/core/lib/connection';
 export default class retriveUserPermissionName {
-    static getNames(conn: any): Promise<any[]>;
+    static retrieveUserPermissions(conn: sfcore.Connection): Promise<string[]>;
 }
