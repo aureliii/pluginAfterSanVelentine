@@ -1,7 +1,7 @@
 
 
 export default class main {
-    public static   start(conn){
+    public static async  start(){
      console.log('sono nel main');
 
        

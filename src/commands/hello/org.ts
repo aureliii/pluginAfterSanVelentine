@@ -46,7 +46,7 @@ export default class Org extends SfdxCommand {
 
     // this.org is guaranteed because requiresUsername=true, as opposed to supportsUsername
     const conn = this.org.getConnection();
-    main.start(conn);
+    await main.start();
     const query = 'Select Name, TrialExpirationDate from Organization';
 
     // The type we are querying for
