@@ -3,9 +3,9 @@ import * as sfcore from '@salesforce/core/lib/connection';
 import * as sfmeta from '@Types/jsforce/api/metadata';
 
 export default class profileRetriever{ 
-    public static async retrieveProfile(conn : sfcore.Connection, profileNames : string[], profileMap){
+    public static async retrieveProfile(conn : sfcore.Connection, profileNames : string[]){
 
-        //const profileMap = new Map();
+        const profileMap = new Map();
     
         console.log('Retrieve profiles in retriever: ' + profileNames);
     
@@ -20,24 +20,32 @@ export default class profileRetriever{
             else{ //if the Read function returns only one profile
                 profileMap.set(retrievedMetadata.fullName, retrievedMetadata);
             }
-        });
-        
-        //console.log(profileMap);
-    
+        });  
         return profileMap;
     }
     
-    public static async retrieveProfileNames(conn :sfcore. Connection){
+    public static async retrieveProfileNames(conn :sfcore.Connection){
         console.log('Retrieve profile names');
         let profileNames: string[] = new Array<string>();
         var types = [{type: 'Profile', folder: null}];
         const profileList = await conn.metadata.list(types, conn.version);
     
         await profileList.forEach(element => {
-            //console.log("Found: " + element.fullName);
             profileNames.push(element.fullName);
-        });
-    
+        });  
         return profileNames;
+    }
+    public static async retriveProfileMTD(conn :sfcore.Connection){
+        let profileNames = await profileRetriever.retrieveProfileNames(conn);
+
+//		var profileList = new Map<String, sfmeta.MetadataInfo>();
+		var i, j, tempArray, chunk = 10;
+        for (i=0, j=profileNames.length; i<j; i += chunk) {
+			tempArray = profileNames.slice(i,i+chunk);
+			console.log("temArray len: " + tempArray.length);
+            var mtd = await profileRetriever.retrieveProfile(conn, tempArray);
+
+		}
+        return mtd;
     }
 }

@@ -9,7 +9,8 @@
     "@oclif/errors": "^1",
     "@salesforce/command": "^2",
     "@salesforce/core": "^2",
-    "tslib": "^1"
+    "tslib": "^1",
+    "xml2json": "^0.12.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
