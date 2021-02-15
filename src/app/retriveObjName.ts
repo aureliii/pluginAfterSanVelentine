@@ -27,7 +27,7 @@ export default class retriveObjName{
                 autoFetch: true,
                 maxFetch: 10000 //lo setto quanto vuoi (si usa max fatch se vogliamo retrivare + di 2k) 
             });
-            console.log('ciao retrice objname',objects);
+       //     console.log('ciao retrive objname',objects);
             return objects;
         } catch (err) {
             console.error(err);
