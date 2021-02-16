@@ -19,6 +19,7 @@ export default class tabFix{
         try{
               let data = fs.readFileSync(path.resolve(__dirname, './ProfileTemplate.xml'));
               jsonTemplate = JSON.parse(parser.toJson(data, {reversible: false}));
+              console.log('template ',jsonTemplate);
               console.log(JSON.stringify(jsonTemplate));
   
               for(const k of metadata.keys()){
