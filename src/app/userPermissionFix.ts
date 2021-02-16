@@ -15,7 +15,7 @@ export default class userPermissionFix{
                         orgMeta.set(k, metadataProfile);
                     } else {
                           if (!Array.isArray(metadataProfile.userPermissions)) {
-                            if (objectNames.includes(metadataProfile.userPermissions.name)) {
+                            if (!objectNames.includes(metadataProfile.userPermissions.name)) {
                                   objectNames.push(metadataProfile.userPermissions.name);
                             }             
                               metadataProfile.userPermissions = Object.entries(metadataProfile.userPermissions);

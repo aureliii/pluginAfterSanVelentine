@@ -7,13 +7,13 @@ export default class objectPermissionFix{
                 let metadataProfile = meta.get(k);
                   if ( metadataProfile.hasOwnProperty('objectPermissions') &&  typeof metadataProfile.objectPermissions !== 'undefined') {
                     if (!Array.isArray(metadataProfile.objectPermissions)) {
-                          if (objectNames.includes(metadataProfile.objectPermissions.object)) {
+                          if (!objectNames.includes(metadataProfile.objectPermissions.object)) {
                             objectNames.push(metadataProfile.objectPermissions.object);
                           }             
                         metadataProfile.objectPermissions = Object.entries(metadataProfile.objectPermissions);
                     } else {
                           for(var permObject of metadataProfile.objectPermissions){
-                            if ( permObject  !== null && permObject.object !== null  && objectNames.includes(permObject.object)) {
+                            if ( permObject  !== null && permObject.object !== null  && !objectNames.includes(permObject.object)) {
                                   objectNames.push(permObject.object);
                             }
                           }
