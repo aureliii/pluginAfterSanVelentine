@@ -1,7 +1,8 @@
 
-var fs = require('fs');
-var parser = require('xml2json');
-const path = require('path');
+// var fs = require('fs');
+// var parser = require('xml2json');
+// const path = require('path');
+import templatestruct from './templatestruct';
 
 var jsonTemplate ;
 var myMap = new Map();
@@ -17,10 +18,10 @@ myMap.set('name', "userPermissions");
 export default class tabFix{ 
     public static async fix(metadata){
         try{
-              let data = fs.readFileSync(path.resolve(__dirname, './ProfileTemplate.xml'));
-              jsonTemplate = JSON.parse(parser.toJson(data, {reversible: false}));
-              console.log('template ',jsonTemplate);
-              console.log(JSON.stringify(jsonTemplate));
+            //  let data = fs.readFileSync(path.resolve(__dirname, './ProfileTemplate.xml'));
+              jsonTemplate = templatestruct.getTemplate();//JSON.parse(parser.toJson(data, {reversible: false}));
+         //     console.log('template ',jsonTemplate);
+         //     console.log(JSON.stringify(jsonTemplate));
   
               for(const k of metadata.keys()){
                 let metadataProfile = metadata.get(k);
