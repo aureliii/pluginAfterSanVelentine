@@ -5,6 +5,7 @@ import tabFix from "./tabFix";
 import userPermissionFix from "./userPermissionFix";
 import objectPermissionFix from "./objectPermissionFix";
 import * as sfcore from '@salesforce/core/lib/connection';
+import writeprofile from "./writeprofile";
 // import * as sfmeta from '@Types/jsforce/api/metadata';
 
 export default class main {
@@ -20,6 +21,8 @@ export default class main {
 		profileMtd = await tabFix.fix(profileMtd);
 		profileMtd = await userPermissionFix.fix(profileMtd,userPermissionName);
 		profileMtd = await objectPermissionFix.fix(profileMtd,objectsName);
+		await writeprofile.write(profileMtd);
+
 		
 
 		console.log('Profiles: ', profileMtd);
