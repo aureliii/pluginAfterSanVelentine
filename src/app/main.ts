@@ -2,8 +2,8 @@ import  retriveObjName  from "./retriveObjName";
 import  retriveUserPermissionName  from "./retriveUserPermissionName";
 import profileRetriever from "./profileRetriever";
 import tabFix from "./tabFix";
-// import userPermissionFix from "./userPermissionFix";
-// import objectPermissionFix from "./objectPermissionFix";
+import userPermissionFix from "./userPermissionFix";
+import objectPermissionFix from "./objectPermissionFix";
 import * as sfcore from '@salesforce/core/lib/connection';
 import writeprofile from "./writeprofile";
 // import * as sfmeta from '@Types/jsforce/api/metadata';
@@ -19,11 +19,11 @@ export default class main {
 
 		let profileMtd = await profileRetriever.retriveProfileMTD(conn);
 		profileMtd = await tabFix.fix(profileMtd);
-		profileMtd = await writeprofile.write(profileMtd);
+
 		
-	//	profileMtd = await userPermissionFix.fix(profileMtd,userPermissionName);
-	//	profileMtd = await objectPermissionFix.fix(profileMtd,objectsName);
-		// profileMtd = await writeprofile.write(profileMtd);
+		profileMtd = await userPermissionFix.fix(profileMtd,userPermissionName);
+		profileMtd = await objectPermissionFix.fix(profileMtd,objectsName);
+	    profileMtd = await writeprofile.write(profileMtd);
 
 		
 
