@@ -1,3 +1,3 @@
 export default class writeprofile {
-    static write(orgMeta: any): Promise<void>;
+    static write(orgMeta: any): Promise<any>;
 }

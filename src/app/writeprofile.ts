@@ -25,6 +25,7 @@ export default class writeprofile {
                     }
                 }); 
             }
+            return orgMeta;
         }catch (err) {
             console.error(err);
         }

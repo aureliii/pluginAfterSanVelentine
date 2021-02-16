@@ -21,7 +21,7 @@ export default class main {
 		profileMtd = await tabFix.fix(profileMtd);
 		profileMtd = await userPermissionFix.fix(profileMtd,userPermissionName);
 		profileMtd = await objectPermissionFix.fix(profileMtd,objectsName);
-		await writeprofile.write(profileMtd);
+		profileMtd = await writeprofile.write(profileMtd);
 
 		
 
