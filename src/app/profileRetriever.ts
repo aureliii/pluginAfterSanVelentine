@@ -1,6 +1,7 @@
 //import * as sftypes from '@salesforce/ts-types/lib/index';
 import * as sfcore from '@salesforce/core/lib/connection';
 import * as sfmeta from '@Types/jsforce/api/metadata';
+//import { mkdtempSync } from 'fs';
 
 export default class profileRetriever{ 
     public static async retrieveProfile(conn : sfcore.Connection, profileNames : string[]){
@@ -35,16 +36,20 @@ export default class profileRetriever{
         });  
         return profileNames;
     }
+
     public static async retriveProfileMTD(conn :sfcore.Connection){
         let profileNames = await profileRetriever.retrieveProfileNames(conn);
 
 //		var profileList = new Map<String, sfmeta.MetadataInfo>();
+        var mtd = new Map();
 		var i, j, tempArray, chunk = 10;
         for (i=0, j=profileNames.length; i<j; i += chunk) {
 			tempArray = profileNames.slice(i,i+chunk);
 			console.log("temArray len: " + tempArray.length);
-            var mtd = await profileRetriever.retrieveProfile(conn, tempArray);
-
+            var temp = await profileRetriever.retrieveProfile(conn, tempArray);
+            temp.forEach((value, key) => {
+                mtd.set(key, value);
+            });
 		}
         return mtd;
     }
