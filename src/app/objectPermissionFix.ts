@@ -10,7 +10,7 @@ export default class objectPermissionFix{
                           if (!objectNames.includes(metadataProfile.objectPermissions.object)) {
                             objectNames.push(metadataProfile.objectPermissions.object);
                           }             
-                        //metadataProfile.objectPermissions = Object.entries(metadataProfile.objectPermissions);
+                           metadataProfile.objectPermissions = Object.entries(metadataProfile.objectPermissions);
                     } else {
                           for(var permObject of metadataProfile.objectPermissions){
                             if ( permObject  !== null && permObject.object !== null  && !objectNames.includes(permObject.object)) {
